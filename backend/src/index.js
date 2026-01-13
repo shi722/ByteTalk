@@ -19,11 +19,20 @@ const __dirname = path.resolve();
 app.use(express.json());
 app.use(cookieParser());
 app.use(
+//   cors({
+//     origin: "http://localhost:5173","https://bytetalk-fr.onrender.com"   // Corrected port for Vite fr //"http://localhost:5173"
+//     credentials: true,
+//   })
+// );
+
   cors({
-    origin: "https://bytetalk-fr.onrender.com", // Corrected port for Vite fr //"http://localhost:5173"
-    credentials: true,
-  })
-);
+  origin: [
+    "http://localhost:5173",
+    "https://bytetalk-fr.onrender.com"
+  ],
+  credentials: true
+})
+
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
